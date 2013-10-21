@@ -12,4 +12,10 @@
 
 @property (strong, nonatomic) Tweet *tweet;
 
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UILabel *tweeterNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
+
 @end

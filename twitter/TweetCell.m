@@ -10,12 +10,6 @@
 
 @interface TweetCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
-@property (weak, nonatomic) IBOutlet UILabel *tweeterName;
-@property (weak, nonatomic) IBOutlet UILabel *screenName;
-@property (weak, nonatomic) IBOutlet UILabel *text;
-@property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
-
 @end
 
 @implementation TweetCell
@@ -38,11 +32,10 @@
 
 -(void)setTweet:(Tweet *)tweet
 {
-    self.text.text = tweet.text;
+    self.textLabel.text = tweet.text;
     self.profileImage.image = tweet.profilePic;
-    self.screenName.text = tweet.screenName;
-    self.tweeterName.text = tweet.tweeterName;
-    // NOTE: TO DO: Add code to calculate the time differential
+    self.screenNameLabel.text = tweet.screenName;
+    self.tweeterNameLabel.text = tweet.tweeterName;
     self.timestampLabel.text = tweet.timestamp;
 }
 

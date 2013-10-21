@@ -49,10 +49,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="profileImage" destination="zbM-5l-2hB" id="jAP-C6-CLl"/>
-                <outlet property="screenName" destination="B4M-mg-4es" id="pP0-TO-bno"/>
-                <outlet property="text" destination="CzR-q0-eYa" id="3KT-FD-kBF"/>
+                <outlet property="screenNameLabel" destination="B4M-mg-4es" id="4w7-yj-yWu"/>
+                <outlet property="textLabel" destination="CzR-q0-eYa" id="4gr-m5-4Z1"/>
                 <outlet property="timestampLabel" destination="uy6-ge-fd4" id="7eM-l2-9lC"/>
-                <outlet property="tweeterName" destination="VAa-yJ-cMd" id="Wsd-LM-kAP"/>
+                <outlet property="tweeterNameLabel" destination="VAa-yJ-cMd" id="AMO-Ka-qYn"/>
             </connections>
         </tableViewCell>
     </objects>

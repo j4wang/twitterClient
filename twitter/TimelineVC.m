@@ -42,6 +42,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // register the custom cell
+    UINib *customNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
+    [self.tableView registerNib: customNib forCellReuseIdentifier:@"TweetCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,13 +69,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"TweetCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    TweetCell *cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    // Doesn't seem to work
-    //TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    //TweetCell *cell = [[TweetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     Tweet *tweet = self.tweets[indexPath.row];
     cell.textLabel.text = tweet.text;
+    cell.screenNameLabel.text = tweet.screenName;
+    cell.tweeterNameLabel.text = tweet.tweeterName;
+    cell.timestampLabel.text = tweet.timestamp;
+    cell.profileImage.image = tweet.profilePic;
     
     return cell;
 }
