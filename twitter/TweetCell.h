@@ -10,4 +10,6 @@
 
 @interface TweetCell : UITableViewCell
 
+@property (strong, nonatomic) Tweet *tweet;
+
 @end
