@@ -20,15 +20,34 @@ static NSDateFormatter *dateFormatter = nil;
 }
 
 - (NSString *)screenName {
+    // add the "@" character to the screen name
+    NSMutableString *amendedScreenName = [[NSMutableString alloc] initWithString:@"@"];
+    
     NSString *tweetScreenName = [self.data valueOrNilForKeyPath:@"user.screen_name"];
     NSLog(@"screen name: %@", tweetScreenName);
-    return tweetScreenName;
+   
+    [amendedScreenName appendString:tweetScreenName];
+    return amendedScreenName;
 }
 
 - (NSString *)tweeterName {
     NSString *tweeterUserName = [self.data valueOrNilForKeyPath:@"user.name"];
     NSLog(@"user name: %@", tweeterUserName);
     return tweeterUserName;
+}
+
+- (NSString *)timestamp {
+    dateFormatter = [[NSDateFormatter alloc] init];
+    // current Twitter date format
+    [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss z yyyy"];
+    
+    NSString *timestampString =[self.data valueOrNilForKeyPath:@"created_at"];
+    NSDate *tweetTimestamp = [dateFormatter dateFromString:timestampString];
+    
+    // set to current output date format
+    [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+    
+    return [dateFormatter stringFromDate:tweetTimestamp];
 }
 
 - (NSString *)timeAgo {
@@ -41,14 +60,23 @@ static NSDateFormatter *dateFormatter = nil;
     NSDate *tweetTimestamp = [dateFormatter dateFromString:timestampString];
     
     // use timeAgo to create Tweet interval string
-    NSString *timeAgo = [tweetTimestamp timeAgo];
-    return timeAgo;
+    return [tweetTimestamp timeAgo];
 }
 
 - (NSString *)profilePicURL {
     NSString *picURL = [self.data valueOrNilForKeyPath:@"user.profile_image_url"];
     NSLog(@"pic url: %@", picURL);
     return picURL;
+}
+
+- (NSString *)retweetCount {
+    return [self.data valueOrNilForKeyPath:@"retweet_count"];
+}
+
+- (NSString *)favoritesCount {
+    NSString *count = [self.data valueOrNilForKeyPath:@"favourites_count"];
+    NSLog(@"Favorites count: %@", count);
+    return count;
 }
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {

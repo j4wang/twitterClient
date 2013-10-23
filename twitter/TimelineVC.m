@@ -10,6 +10,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeTweetViewController.h"
+#import "SingleTweetViewController.h"
 
 @interface TimelineVC ()
 
@@ -139,6 +140,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //TweetCell *cell = (TweetCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    Tweet *currentTweet = self.tweets[indexPath.row];
+    if(currentTweet){
+        NSLog(@"self.tweet is not null!");
+    }
+    else {
+        NSLog(@"self.tweet is null!");
+    }
+
+    SingleTweetViewController *svc = [[SingleTweetViewController alloc] initWithTweet:currentTweet];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 /*
