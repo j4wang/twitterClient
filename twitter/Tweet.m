@@ -48,11 +48,10 @@ static NSDateFormatter *dateFormatter = nil;
     return [NSString stringWithFormat:@"%f", interval];
 }
 
-- (UIImage *)profilePic {
+- (NSString *)profilePicURL {
     NSString *picURL = [self.data valueOrNilForKeyPath:@"user.profile_image_url"];
-    NSURL *imageURL = [NSURL URLWithString:picURL];
     NSLog(@"pic url: %@", picURL);
-    return [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    return picURL;
 }
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {

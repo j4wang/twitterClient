@@ -29,7 +29,7 @@
 
     // Configure the view for the selected state
 }
-
+/*
 -(void)setTweet:(Tweet *)tweet
 {
     self.textLabel.text = tweet.text;
@@ -38,5 +38,5 @@
     self.tweeterNameLabel.text = tweet.tweeterName;
     self.timestampLabel.text = tweet.timestamp;
 }
-
+*/
 @end

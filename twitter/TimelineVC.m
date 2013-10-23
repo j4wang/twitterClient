@@ -8,8 +8,11 @@
 
 #import "TimelineVC.h"
 #import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TimelineVC ()
+
+#define PADDING 5.0f
 
 @property (nonatomic, strong) NSMutableArray *tweets;
 
@@ -78,7 +81,13 @@
     cell.screenNameLabel.text = tweet.screenName;
     cell.tweeterNameLabel.text = tweet.tweeterName;
     cell.timestampLabel.text = tweet.timestamp;
-    cell.profileImage.image = tweet.profilePic;
+    
+    //NSString *imageURL = ;
+    //[cell.profileImage setURL:imageURL];
+    NSURL *imageURL = [NSURL URLWithString:tweet.profilePicURL];
+    if (imageURL) {
+        [cell.profileImage setImageWithURL:imageURL];
+    }
     
     return cell;
 }
@@ -139,6 +148,42 @@
 }
 
  */
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // call sizeWithFont to get height
+    
+    // size of other elements
+    float heightOfConstraints = 10; // 5 (constraint) x 2 (top & bottom)
+    //float heightOfTopRow = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}];
+    //int heightOfTwitterText = [string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f]}];
+
+    // current Tweet
+    Tweet *currentTweet = [self.tweets objectAtIndex:indexPath.row];
+    
+    // calculate height of top row (name, etc.)
+    NSString *tweeterName = currentTweet.tweeterName;
+    //NSLog(@"indexPath.row: %f", indexPath.row);
+    //NSString *tweeterName = @"Joe Blow";
+    CGSize heightOfTopRow = [tweeterName sizeWithFont:[UIFont systemFontOfSize:12.0f] forWidth:50.0 lineBreakMode:NSLineBreakByWordWrapping];
+    NSLog(@"heightOfTopRow %f",heightOfTopRow.height);
+    
+    NSString *tweetContent = currentTweet.text;
+    //NSString *tweetContent = @"This is 140 characters of prime foolishness!! Why don't you visit http://codepath.com to learn iOS programming";
+    CGSize heightOfTweetText = [tweetContent sizeWithFont:[UIFont systemFontOfSize:14.0f] forWidth:150.0 lineBreakMode:NSLineBreakByWordWrapping];
+    NSLog(@"heightOfTweetText %f",heightOfTweetText.height);
+    
+    // using height of UIImageView as minimum tweet cell height = 48 + padding of 5 on both top & bottom
+    float totalCellHeight = 100.0;
+    
+    // replace totalCellHeight if calculated cell height is greater
+    if ((2*heightOfTweetText.height + 2*heightOfTopRow.height + (PADDING * 3)) > totalCellHeight)
+    {
+        totalCellHeight = 2*heightOfTweetText.height + 2*heightOfTopRow.height + (PADDING * 3);
+    }
+    NSLog(@"totalCellHeight %f",totalCellHeight);
+    return totalCellHeight;
+}
 
 #pragma mark - Private methods
 

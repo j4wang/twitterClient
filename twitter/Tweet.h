@@ -12,7 +12,7 @@
 
 //@property (nonatomic, strong, readonly) NSString *text;
 
-@property (strong, nonatomic) UIImage *profilePic;
+@property (strong, nonatomic) NSString *profilePicURL;
 @property (strong, nonatomic) NSString *tweeterName;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *text;
