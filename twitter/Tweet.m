@@ -7,6 +7,7 @@
 //
 
 #import "Tweet.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation Tweet
 
@@ -30,22 +31,18 @@ static NSDateFormatter *dateFormatter = nil;
     return tweeterUserName;
 }
 
-- (NSString *)timestamp {
-    // calculate timestamp differential
+- (NSString *)timeAgo {
     // *** set up date formatter ***
     dateFormatter = [[NSDateFormatter alloc] init];
-    //"created_at": "Tue Aug 28 21:16:23 +0000 2012"
+    // current Twitter date format
     [dateFormatter setDateFormat:@"EEE MMM dd HH:mm:ss z yyyy"];
     
     NSString *timestampString =[self.data valueOrNilForKeyPath:@"created_at"];
     NSDate *tweetTimestamp = [dateFormatter dateFromString:timestampString];
-    NSDate *currentTimestamp = [dateFormatter dateFromString:[dateFormatter stringFromDate:[NSDate date]]];
     
-    NSTimeInterval interval = [currentTimestamp timeIntervalSinceDate:tweetTimestamp];
-    //int hour = interval / 3600;
-    //int minute = (int)interval % 3600 / 60;
-    NSLog(@"Timestamp Interval %f seconds", interval);
-    return [NSString stringWithFormat:@"%f", interval];
+    // use timeAgo to create Tweet interval string
+    NSString *timeAgo = [tweetTimestamp timeAgo];
+    return timeAgo;
 }
 
 - (NSString *)profilePicURL {

@@ -9,6 +9,7 @@
 #import "TimelineVC.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeTweetViewController.h"
 
 @interface TimelineVC ()
 
@@ -39,6 +40,8 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onComposeButton)];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -80,7 +83,7 @@
     cell.textLabel.text = tweet.text;
     cell.screenNameLabel.text = tweet.screenName;
     cell.tweeterNameLabel.text = tweet.tweeterName;
-    cell.timestampLabel.text = tweet.timestamp;
+    cell.timestampLabel.text = tweet.timeAgo;
     
     //NSString *imageURL = ;
     //[cell.profileImage setURL:imageURL];
@@ -134,6 +137,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -189,6 +193,12 @@
 
 - (void)onSignOutButton {
     [User setCurrentUser:nil];
+}
+
+- (void)onComposeButton {
+    ComposeTweetViewController *tweetComposeVC = [[ComposeTweetViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tweetComposeVC];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)reload {

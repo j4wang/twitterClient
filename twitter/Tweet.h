@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSString *tweeterName;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *text;
-@property (strong, nonatomic) NSString *timestamp;
+@property (strong, nonatomic) NSString *timeAgo;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 
