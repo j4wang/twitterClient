@@ -76,13 +76,16 @@ static NSDateFormatter *dateFormatter = nil;
 }
 
 - (NSString *)retweetCount {
-    return [self.data valueOrNilForKeyPath:@"retweet_count"];
+    NSString *retweetCountString = [NSString stringWithFormat:@"%@",[self.data valueOrNilForKeyPath:@"retweet_count"]];
+    NSLog(@"Retweet count: %@", retweetCountString);
+    return retweetCountString;
 }
 
 - (NSString *)favoritesCount {
-    NSString *count = [self.data valueOrNilForKeyPath:@"favourites_count"];
-    NSLog(@"Favorites count: %@", count);
-    return count;
+    //NSString *favoritesCountString = [self.data valueOrNilForKeyPath:@"favourites_count"];
+    NSString *favoritesCountString = [NSString stringWithFormat:@"%@",[self.data valueOrNilForKeyPath:@"favorite_count"]];
+    NSLog(@"Favorites count: %@", favoritesCountString);
+    return favoritesCountString;
 }
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array {

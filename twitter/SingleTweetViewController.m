@@ -43,22 +43,19 @@
     self.tweeterName.text = self.tweet.tweeterName;
     self.screenName.text = self.tweet.screenName;
     
-    // set up picture load
+    // set up async picture loading
     NSURL *imageURL = [NSURL URLWithString:self.tweet.profilePicURL];
     if (imageURL) {
         [self.profilePic setImageWithURL:imageURL];
     }
     self.text.text = self.tweet.text;
     self.timestamp.text = self.tweet.timestamp;
-    self.favoriteCount.text = self.tweet.favoritesCount;
+
     NSLog(@"favorite count: %@", self.tweet.favoritesCount);
+    self.favoriteCount.text = self.tweet.favoritesCount;
     
-    // retweetCount isn't working for some reason
-    if (false) {
-        self.retweetCount.text = self.tweet.retweetCount;
-        //NSLog(@"retweetCount %@", self.tweet.retweetCount);
-    }
-    
+    NSLog(@"retweetCount %@", self.tweet.retweetCount);
+    self.retweetCount.text = self.tweet.retweetCount;
 }
 
 - (void)didReceiveMemoryWarning
