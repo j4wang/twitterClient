@@ -11,5 +11,6 @@
 @interface ComposeTweetViewController : UIViewController
 
 @property (weak, nonatomic) NSString *responseTweetID;
+@property (weak, nonatomic) NSString *responseTweenScreenName;
 
 @end

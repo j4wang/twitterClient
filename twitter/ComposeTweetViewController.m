@@ -32,6 +32,14 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancelButton)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweetButton)];
+    
+    // add screenName of author for the reply
+    if (self.responseTweetID != nil) {
+        // add a space behind the screenName
+        NSMutableString *screenNameWithSpace = [[NSMutableString alloc] initWithString:self.responseTweenScreenName];
+        [screenNameWithSpace appendString:@" "];
+        self.twitterContentField.text = screenNameWithSpace;
+    }
 }
 
 - (void)didReceiveMemoryWarning

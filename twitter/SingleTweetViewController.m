@@ -71,7 +71,10 @@
 {
     NSLog(@"Reply to tweet");
     ComposeTweetViewController *composeTweetVC = [[ComposeTweetViewController alloc] init];
+    // pass id & name for replies
     composeTweetVC.responseTweetID = self.tweet.tweetID;
+    composeTweetVC.responseTweenScreenName = self.tweet.screenName;
+    
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:composeTweetVC];
     [self presentViewController:nc animated:YES completion:nil];
 }
