@@ -69,6 +69,7 @@
 
 - (IBAction)onReply:(id)sender
 {
+    NSLog(@"Reply to tweet");
     ComposeTweetViewController *composeTweetVC = [[ComposeTweetViewController alloc] init];
     composeTweetVC.responseTweetID = self.tweet.tweetID;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:composeTweetVC];
@@ -77,6 +78,7 @@
 
 - (IBAction)onRetweet:(id)sender
 {
+    NSLog(@"Retweeted Tweet ID: %@",self.tweet.tweetID);
     [[TwitterClient instance] retweet:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"Retweeted!");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -86,6 +88,7 @@
 
 - (IBAction)onFavorite:(id)sender
 {
+    NSLog(@"Favorited Tweet ID: %@",self.tweet.tweetID);
     [[TwitterClient instance] favorite:self.tweet.tweetID success:^(AFHTTPRequestOperation *operation, id response) {
         NSLog(@"Tweet Favorited!");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

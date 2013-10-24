@@ -88,7 +88,7 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
           success:(void (^)(AFHTTPRequestOperation *, id))success
           failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": tweetID}];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id":tweetID}];
     [self postPath:@"1.1/favorites/create.json" parameters:params success:success failure:failure];
 }
 

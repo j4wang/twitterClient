@@ -18,9 +18,9 @@
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSString *timestamp;
 @property (strong, nonatomic) NSString *timeAgo;
+@property (strong, nonatomic) NSString *tweetID;
 @property (nonatomic, strong, readonly) NSString *retweetCount;
 @property (nonatomic, strong, readonly) NSString *favoritesCount;
-@property (weak, nonatomic) NSString *tweetID;
 
 + (NSMutableArray *)tweetsWithArray:(NSArray *)array;
 

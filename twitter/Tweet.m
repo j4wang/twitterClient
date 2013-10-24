@@ -36,6 +36,12 @@ static NSDateFormatter *dateFormatter = nil;
     return tweeterUserName;
 }
 
+- (NSString *)tweetID {
+    NSString *tweetID = [self.data valueOrNilForKeyPath:@"id"];
+    NSLog(@"tweet ID: %@", tweetID);
+    return tweetID;
+}
+
 - (NSString *)timestamp {
     dateFormatter = [[NSDateFormatter alloc] init];
     // current Twitter date format
