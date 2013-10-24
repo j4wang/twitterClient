@@ -53,6 +53,15 @@
     // register the custom cell
     UINib *customNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
     [self.tableView registerNib: customNib forCellReuseIdentifier:@"TweetCell"];
+    
+    // add pull to refresh
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    [refresh addTarget:self action:@selector(reload)forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
 }
 
 - (void)didReceiveMemoryWarning
@@ -202,6 +211,12 @@
     return totalCellHeight;
 }
 
+#pragma mark - Refresh methods
+- (void)stopRefresh
+{
+    [self.refreshControl endRefreshing];
+}
+
 #pragma mark - Private methods
 
 - (void)onSignOutButton {
@@ -222,6 +237,9 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // Do nothing
     }];
+    
+    // add for pull to refresh
+    [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:2.5];
 }
 
 @end
